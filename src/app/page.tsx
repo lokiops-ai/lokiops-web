@@ -173,10 +173,7 @@ function Features() {
           {features.map((f) => (
             <div
               key={f.label}
-              className="group p-8 transition-colors duration-200"
-              style={{ background: '#000000' }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.02)')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#000000')}
+              className="group bg-black p-8 transition-colors duration-200 hover:bg-white/[0.02]"
             >
               <div className="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/50">
                 {f.icon}
