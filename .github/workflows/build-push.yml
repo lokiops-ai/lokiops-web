@@ -56,7 +56,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           sed -i "s|image: ghcr.io/lokiops-ai/lokiops-web:.*|image: ghcr.io/lokiops-ai/lokiops-web:${{ steps.semver.outputs.tag }}|" k8s/web-rollout.yaml
           git add k8s/web-rollout.yaml
-          git commit -m "chore: update lokiops-web image to ${{ steps.semver.outputs.tag }} [skip ci]"
-          git push origin main
+          git diff --staged --quiet || {
+            git commit -m "chore: update lokiops-web image to ${{ steps.semver.outputs.tag }} [skip ci]"
+            git push origin main
+          }
           git tag ${{ steps.semver.outputs.tag }}
           git push origin ${{ steps.semver.outputs.tag }}
