@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 const APP_URL = 'https://app.lokiops.ai'
@@ -62,13 +63,13 @@ function Hero() {
 
       {/* Glow orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-[120px]" />
-        <div className="absolute right-1/4 top-2/3 h-[400px] w-[400px] rounded-full bg-violet-500/8 blur-[100px]" />
+        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[120px]" />
+        <div className="absolute right-1/4 top-2/3 h-[400px] w-[400px] rounded-full bg-violet-500/[0.08] blur-[100px]" />
       </div>
 
       <div className="relative max-w-4xl">
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-white/50 backdrop-blur-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+          <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
           AI-native resilience testing for Kubernetes
         </div>
 
@@ -116,7 +117,7 @@ function Hero() {
             <div className="mt-1 text-white/30">  Ramping CPU load to 80% over 60s</div>
             <div className="mt-1 text-amber-400/80">  ⚠ Replica payments-api-6d8f9b degraded at 73% utilization</div>
             <div className="mt-1 text-emerald-400/80">  ✓ HPA triggered — scaled 3 → 5 replicas</div>
-            <div className="mt-1 text-indigo-400/90">  ✦ AI: autoscaling threshold too high, recommend lowering to 60%</div>
+            <div className="mt-1 text-violet-400/90">  ✦ AI: autoscaling threshold too high, recommend lowering to 60%</div>
           </div>
         </div>
       </div>
@@ -162,7 +163,7 @@ function Features() {
     <section id="features" className="px-6 py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-indigo-400">Features</p>
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-violet-400">Features</p>
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Everything your platform team needs</h2>
           <p className="mx-auto mt-4 max-w-md text-white/40">
             One platform for the full resilience lifecycle.
@@ -211,7 +212,7 @@ function HowItWorks() {
     <section id="how-it-works" className="px-6 py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-indigo-400">How it works</p>
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-violet-400">How it works</p>
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Up and running in minutes</h2>
         </div>
 
@@ -241,7 +242,7 @@ function DeepDive() {
         >
           <div className="grid md:grid-cols-2">
             <div className="p-12 lg:p-16">
-              <p className="mb-4 text-xs font-medium uppercase tracking-widest text-indigo-400">AI Analysis</p>
+              <p className="mb-4 text-xs font-medium uppercase tracking-widest text-violet-400">AI Analysis</p>
               <h2 className="mb-4 text-2xl font-bold leading-tight tracking-tight md:text-3xl">
                 From raw metrics<br />to actionable fixes
               </h2>
@@ -257,7 +258,7 @@ function DeepDive() {
                   'Exportable reports for post-mortems and compliance',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-white/40">
-                    <span className="mt-0.5 shrink-0 text-indigo-400">✓</span>
+                    <span className="mt-0.5 shrink-0 text-violet-400">✓</span>
                     {item}
                   </li>
                 ))}
@@ -270,7 +271,7 @@ function DeepDive() {
             >
               <div className="w-full max-w-sm space-y-2 font-mono text-xs">
                 <div className="rounded-xl p-4" style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="mb-3 text-xs font-semibold text-indigo-400">Experiment Summary</div>
+                  <div className="mb-3 text-xs font-semibold text-violet-400">Experiment Summary</div>
                   <div className="space-y-1.5">
                     {[
                       ['Target', 'payments-api'],
@@ -297,7 +298,7 @@ function DeepDive() {
                 </div>
 
                 <div className="rounded-xl p-4" style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="mb-2 text-xs font-semibold text-indigo-400">Affected Resources</div>
+                  <div className="mb-2 text-xs font-semibold text-violet-400">Affected Resources</div>
                   <div className="space-y-1 text-white/30">
                     <div>deployment.yaml <span className="text-amber-400/60">→ limits.cpu</span></div>
                     <div>hpa.yaml <span className="text-amber-400/60">→ targetCPUUtilizationPercentage</span></div>
@@ -376,13 +377,7 @@ function Footer() {
 // ---- Icons ----
 
 function LokiLogo() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect width="24" height="24" rx="6" fill="white" />
-      <path d="M7 17L12 7L17 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9.5 13H14.5" stroke="black" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  )
+  return <Image src="/logo.png" alt="LokiOps" width={28} height={28} />
 }
 
 function ChaosIcon() {
