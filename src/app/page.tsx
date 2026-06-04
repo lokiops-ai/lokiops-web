@@ -216,7 +216,7 @@ function StatsBar() {
     { value: '24', label: 'chaos operations' },
     { value: '3-phase', label: 'monitoring' },
     { value: 'AI-written', label: 'summaries' },
-    { value: 'zero', label: 'data leaves your cluster' },
+    { value: 'agent', label: 'runs inside your cluster' },
   ]
   return (
     <div className="border-y border-white/5 py-8">
@@ -498,7 +498,7 @@ function Safety() {
                   'Approval workflows for high-risk experiments with spec hashing',
                   'Namespace and domain allowlists set by org admins',
                   'Per-agent HMAC signing — results can\'t be tampered with',
-                  'Runs entirely in your cluster — no data leaves your infrastructure',
+                  'Agent-based: chaos runs from within your cluster, no inbound connections required',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-white/40">
                     <span className="mt-0.5 shrink-0 text-violet-400">✓</span>
