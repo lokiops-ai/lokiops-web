@@ -4,10 +4,9 @@ const APP_URL = 'https://app.lokiops.ai'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#080C14] text-[#F0F4FF]">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
       <Hero />
-      <LogoBar />
       <Features />
       <HowItWorks />
       <DeepDive />
@@ -19,27 +18,27 @@ export default function Home() {
 
 function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-[#1E2A3D] bg-[#080C14]/90 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2.5">
           <LokiLogo />
-          <span className="text-lg font-semibold tracking-tight">LokiOps</span>
+          <span className="text-sm font-semibold tracking-tight">LokiOps</span>
         </Link>
-        <div className="hidden items-center gap-8 text-sm text-[#7A8FA6] md:flex">
-          <a href="#features" className="hover:text-[#F0F4FF] transition-colors">Features</a>
-          <a href="#how-it-works" className="hover:text-[#F0F4FF] transition-colors">How it works</a>
-          <a href={`${APP_URL}/docs`} className="hover:text-[#F0F4FF] transition-colors">Docs</a>
+        <div className="hidden items-center gap-8 text-sm text-white/40 md:flex">
+          <a href="#features" className="hover:text-white transition-colors duration-200">Features</a>
+          <a href="#how-it-works" className="hover:text-white transition-colors duration-200">How it works</a>
+          <a href={`${APP_URL}/docs`} className="hover:text-white transition-colors duration-200">Docs</a>
         </div>
         <div className="flex items-center gap-3">
           <Link
             href={`${APP_URL}/login`}
-            className="hidden text-sm text-[#7A8FA6] hover:text-[#F0F4FF] transition-colors md:block"
+            className="hidden text-sm text-white/40 hover:text-white transition-colors duration-200 md:block"
           >
             Sign in
           </Link>
           <Link
             href={`${APP_URL}/signup`}
-            className="rounded-lg bg-[#4F86FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3A6EE8] transition-colors"
+            className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
           >
             Get started
           </Link>
@@ -51,64 +50,73 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-24 pt-20 text-center">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute inset-0 flex items-start justify-center">
-        <div className="mt-16 h-[600px] w-[900px] rounded-full bg-[#4F86FF]/8 blur-[120px]" />
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20 text-center">
+      {/* Background grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
+      />
+
+      {/* Glow orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-[120px]" />
+        <div className="absolute right-1/4 top-2/3 h-[400px] w-[400px] rounded-full bg-violet-500/8 blur-[100px]" />
       </div>
 
-      <div className="relative mx-auto max-w-4xl">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1E2A3D] bg-[#0E1420] px-4 py-1.5 text-sm text-[#7A8FA6]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#4F86FF]" />
+      <div className="relative max-w-4xl">
+        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-white/50 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
           AI-native resilience testing for Kubernetes
         </div>
 
-        <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl">
-          Break things{' '}
-          <span className="bg-gradient-to-r from-[#4F86FF] to-[#A78BFA] bg-clip-text text-transparent">
-            before they
-          </span>
+        <h1 className="mb-6 text-6xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+          Break things
+          <br />
+          <span className="gradient-text">before they</span>
           <br />
           break you
         </h1>
 
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#7A8FA6]">
-          LokiOps gives platform teams AI agents that probe, stress, and validate every corner of
-          your Kubernetes infrastructure — automatically, on a schedule, before production finds
-          the gaps first.
+        <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-white/40">
+          LokiOps gives platform teams AI agents that probe, stress, and validate
+          every corner of your Kubernetes infrastructure — automatically.
         </p>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href={`${APP_URL}/signup`}
-            className="rounded-lg bg-[#4F86FF] px-6 py-3 font-medium text-white hover:bg-[#3A6EE8] transition-colors"
+            className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-black transition-all duration-200 hover:bg-white/90"
           >
-            Start testing free →
+            Start testing free
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
           </Link>
           <a
             href="#how-it-works"
-            className="rounded-lg border border-[#1E2A3D] px-6 py-3 font-medium text-[#7A8FA6] hover:border-[#2E3A4D] hover:text-[#F0F4FF] transition-colors"
+            className="rounded-lg border border-white/10 px-6 py-3 text-sm font-medium text-white/50 transition-colors duration-200 hover:border-white/20 hover:text-white"
           >
             See how it works
           </a>
         </div>
 
-        {/* Terminal preview */}
-        <div className="mx-auto mt-16 max-w-2xl overflow-hidden rounded-xl border border-[#1E2A3D] bg-[#0E1420] text-left shadow-2xl">
-          <div className="flex items-center gap-2 border-b border-[#1E2A3D] px-4 py-3">
-            <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-            <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-            <span className="h-3 w-3 rounded-full bg-[#28C840]" />
-            <span className="ml-2 text-xs text-[#3A4A5C]">lokiops-agent — experiment runner</span>
+        {/* Terminal */}
+        <div className="mx-auto mt-20 max-w-2xl overflow-hidden rounded-2xl border border-white/8 bg-white/3 shadow-2xl backdrop-blur-sm" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          <div className="flex items-center gap-2 border-b border-white/5 px-5 py-3.5">
+            <span className="h-3 w-3 rounded-full bg-white/10" />
+            <span className="h-3 w-3 rounded-full bg-white/10" />
+            <span className="h-3 w-3 rounded-full bg-white/10" />
+            <span className="ml-3 font-mono text-xs text-white/20">experiment runner</span>
           </div>
-          <div className="p-5 font-mono text-sm">
-            <TerminalLine prompt="$" text="lokiops run experiment --target payments-api --type cpu-stress" />
-            <TerminalLine color="text-[#7A8FA6]" text="  Connecting to cluster..." delay />
-            <TerminalLine color="text-[#28C840]" text="  ✓ Agent deployed to payments-api (3 replicas)" delay />
-            <TerminalLine color="text-[#7A8FA6]" text="  Ramping CPU load to 80% over 60s..." delay />
-            <TerminalLine color="text-[#FEBC2E]" text="  ⚠ Replica payments-api-6d8f9b (pod/node: node-2) degraded at 73%" delay />
-            <TerminalLine color="text-[#28C840]" text="  ✓ HPA triggered — scaled from 3 → 5 replicas" delay />
-            <TerminalLine color="text-[#4F86FF]" text="  ✦ AI analysis: autoscaling threshold too high, recommend 60%" delay />
+          <div className="p-6 font-mono text-xs leading-relaxed">
+            <div className="text-white/30">$ <span className="text-white/70">lokiops run experiment --target payments-api --type cpu-stress</span></div>
+            <div className="mt-2 text-white/30">  Connecting to cluster<span className="animate-pulse">...</span></div>
+            <div className="mt-1 text-emerald-400/80">  ✓ Agent deployed to payments-api (3 replicas)</div>
+            <div className="mt-1 text-white/30">  Ramping CPU load to 80% over 60s</div>
+            <div className="mt-1 text-amber-400/80">  ⚠ Replica payments-api-6d8f9b degraded at 73% utilization</div>
+            <div className="mt-1 text-emerald-400/80">  ✓ HPA triggered — scaled 3 → 5 replicas</div>
+            <div className="mt-1 text-indigo-400/90">  ✦ AI: autoscaling threshold too high, recommend lowering to 60%</div>
           </div>
         </div>
       </div>
@@ -116,105 +124,65 @@ function Hero() {
   )
 }
 
-function TerminalLine({
-  prompt,
-  text,
-  color = 'text-[#F0F4FF]',
-  delay = false,
-}: {
-  prompt?: string
-  text: string
-  color?: string
-  delay?: boolean
-}) {
-  return (
-    <div className={`mb-1.5 ${color} ${delay ? 'opacity-90' : ''}`}>
-      {prompt && <span className="mr-2 text-[#4F86FF]">{prompt}</span>}
-      {text}
-    </div>
-  )
-}
-
-function LogoBar() {
-  return (
-    <div className="border-y border-[#1E2A3D] py-10">
-      <div className="mx-auto max-w-5xl px-6">
-        <p className="mb-8 text-center text-sm text-[#3A4A5C]">BUILT FOR TEAMS RUNNING KUBERNETES IN PRODUCTION</p>
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-[#3A4A5C]">
-          {['Platform Engineering', 'SRE Teams', 'DevOps', 'Cloud Native', 'FinTech', 'SaaS Infra'].map((label) => (
-            <span key={label} className="text-sm font-medium">{label}</span>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function Features() {
   const features = [
     {
       icon: <ChaosIcon />,
-      title: 'Chaos Experiments',
-      description:
-        'Inject CPU pressure, memory stress, and network disruption into your workloads. Understand exactly how your services behave under failure — before your users experience it.',
+      label: 'Chaos Experiments',
+      description: 'Inject CPU pressure, memory stress, and network disruption. Understand exactly how services fail before users experience it.',
     },
     {
       icon: <AgentIcon />,
-      title: 'AI Agents',
-      description:
-        'Intelligent agents that learn your cluster topology and autonomously identify failure modes across services, namespaces, and node pools — no manual scenario scripting.',
+      label: 'AI Agents',
+      description: 'Intelligent agents that learn your cluster topology and autonomously probe for failure modes across services and namespaces.',
     },
     {
       icon: <LoadIcon />,
-      title: 'Load Testing',
-      description:
-        'Generate realistic traffic at scale against your Kubernetes services. Validate SLAs, find throughput ceilings, and expose bottlenecks before your next big traffic spike.',
+      label: 'Load Testing',
+      description: 'Generate realistic traffic at scale. Validate SLAs, find throughput ceilings, and expose bottlenecks before the next spike.',
     },
     {
       icon: <ScheduleIcon />,
-      title: 'Scheduled Reliability',
-      description:
-        'Run chaos experiments and load tests on a recurring schedule. Continuously validate resilience without manual intervention — reliability as a background process.',
+      label: 'Scheduled Reliability',
+      description: 'Run chaos experiments on a recurring schedule. Continuously validate resilience without manual intervention.',
     },
     {
       icon: <InsightIcon />,
-      title: 'AI-Powered Insights',
-      description:
-        'Every experiment produces an AI analysis: what failed, why, and what to fix. Turn raw Kubernetes metrics into concrete, actionable recommendations your team can act on immediately.',
+      label: 'AI-Powered Insights',
+      description: 'Every experiment produces an AI analysis: what failed, why, and exactly what to fix. Actionable, not just descriptive.',
     },
     {
       icon: <OperatorIcon />,
-      title: 'Kubernetes-Native',
-      description:
-        'Deployed as a Kubernetes operator. No external SaaS dependencies, no data leaves your cluster. Fits naturally into your existing GitOps workflows and RBAC policies.',
+      label: 'Kubernetes-Native',
+      description: 'Deployed as an operator. No external SaaS dependencies, no data leaves your cluster. Fits your existing GitOps workflow.',
     },
   ]
 
   return (
-    <section id="features" className="px-6 py-24">
+    <section id="features" className="px-6 py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-[#4F86FF]">
-          Features
+        <div className="mb-16 text-center">
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-indigo-400">Features</p>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Everything your platform team needs</h2>
+          <p className="mx-auto mt-4 max-w-md text-white/40">
+            One platform for the full resilience lifecycle.
+          </p>
         </div>
-        <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">
-          Everything your platform team needs
-        </h2>
-        <p className="mx-auto mb-16 max-w-xl text-center text-[#7A8FA6]">
-          One platform for the full resilience lifecycle — from automated chaos injection to AI
-          root-cause analysis.
-        </p>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px md:grid-cols-2 lg:grid-cols-3" style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '16px', overflow: 'hidden' }}>
           {features.map((f) => (
             <div
-              key={f.title}
-              className="rounded-xl border border-[#1E2A3D] bg-[#0E1420] p-6 hover:border-[#2E3A4D] transition-colors"
+              key={f.label}
+              className="group p-8 transition-colors duration-200"
+              style={{ background: '#000000' }}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.02)')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#000000')}
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[#4F86FF]/10 text-[#4F86FF]">
+              <div className="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/50">
                 {f.icon}
               </div>
-              <h3 className="mb-2 font-semibold">{f.title}</h3>
-              <p className="text-sm leading-relaxed text-[#7A8FA6]">{f.description}</p>
+              <h3 className="mb-2 text-sm font-semibold">{f.label}</h3>
+              <p className="text-sm leading-relaxed text-white/40">{f.description}</p>
             </div>
           ))}
         </div>
@@ -226,44 +194,38 @@ function Features() {
 function HowItWorks() {
   const steps = [
     {
-      step: '01',
+      n: '01',
       title: 'Connect your cluster',
-      description:
-        'Install the LokiOps operator with a single kubectl command. It connects to your cluster, discovers your workloads, and maps service dependencies automatically. No code changes required.',
+      description: 'Install the LokiOps operator with a single kubectl command. It discovers your workloads and maps service dependencies automatically.',
     },
     {
-      step: '02',
+      n: '02',
       title: 'Define your targets',
-      description:
-        'Point LokiOps at the services you care about. Our AI agent analyses your deployments, resource requests, and topology to generate a tailored resilience testing plan — or you can build your own.',
+      description: 'Point LokiOps at the services you care about. Our AI generates a tailored resilience testing plan — or you build your own.',
     },
     {
-      step: '03',
+      n: '03',
       title: 'Run and learn',
-      description:
-        'Execute chaos experiments and load tests from a unified dashboard or CLI. Every run produces an AI-written analysis: what held up, what degraded, and exactly what to change.',
+      description: 'Execute experiments from a unified dashboard or CLI. Every run produces an AI analysis: what held up, what degraded, what to change.',
     },
   ]
 
   return (
-    <section id="how-it-works" className="px-6 py-24">
+    <section id="how-it-works" className="px-6 py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-[#4F86FF]">
-          How it works
+        <div className="mb-16 text-center">
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-indigo-400">How it works</p>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Up and running in minutes</h2>
         </div>
-        <h2 className="mb-16 text-center text-3xl font-bold md:text-4xl">
-          Up and running in minutes
-        </h2>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {steps.map((s, i) => (
-            <div key={s.step} className="relative">
-              {i < steps.length - 1 && (
-                <div className="absolute left-[calc(50%+2rem)] top-5 hidden h-px w-full bg-[#1E2A3D] md:block" />
-              )}
-              <div className="mb-4 text-4xl font-bold text-[#1E2A3D]">{s.step}</div>
-              <h3 className="mb-3 text-xl font-semibold">{s.title}</h3>
-              <p className="text-sm leading-relaxed text-[#7A8FA6]">{s.description}</p>
+          {steps.map((s) => (
+            <div key={s.n} className="relative">
+              <div className="mb-6 text-5xl font-bold" style={{ color: 'rgba(255,255,255,0.06)', fontVariantNumeric: 'tabular-nums' }}>
+                {s.n}
+              </div>
+              <h3 className="mb-3 font-semibold">{s.title}</h3>
+              <p className="text-sm leading-relaxed text-white/40">{s.description}</p>
             </div>
           ))}
         </div>
@@ -274,65 +236,74 @@ function HowItWorks() {
 
 function DeepDive() {
   return (
-    <section className="px-6 py-24">
+    <section className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
-        <div className="overflow-hidden rounded-2xl border border-[#1E2A3D] bg-[#0E1420]">
+        <div
+          className="overflow-hidden rounded-2xl"
+          style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}
+        >
           <div className="grid md:grid-cols-2">
-            {/* Text side */}
-            <div className="p-10 lg:p-14">
-              <div className="mb-4 text-sm font-medium uppercase tracking-widest text-[#4F86FF]">
-                AI Analysis
-              </div>
-              <h2 className="mb-4 text-3xl font-bold leading-tight">
-                From raw metrics to actionable fixes
+            <div className="p-12 lg:p-16">
+              <p className="mb-4 text-xs font-medium uppercase tracking-widest text-indigo-400">AI Analysis</p>
+              <h2 className="mb-4 text-2xl font-bold leading-tight tracking-tight md:text-3xl">
+                From raw metrics<br />to actionable fixes
               </h2>
-              <p className="mb-8 text-[#7A8FA6] leading-relaxed">
-                Most chaos tools show you that something broke. LokiOps tells you why — and what
-                to do about it. Our AI agent correlates Kubernetes events, resource metrics, and
-                experiment timelines to produce clear, specific recommendations your team can
-                implement immediately.
+              <p className="mb-8 text-sm leading-relaxed text-white/40">
+                Most chaos tools show you that something broke. LokiOps tells you why — and what to do about it.
+                Our AI correlates events, metrics, and experiment timelines into clear, specific recommendations.
               </p>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3">
                 {[
-                  'Automatic root-cause correlation across pods, nodes, and services',
-                  'Concrete recommendations: resource limits, HPA thresholds, probe tuning',
-                  'Tracks improvements run-over-run as you apply fixes',
-                  'Exportable reports for incident post-mortems and compliance',
+                  'Root-cause correlation across pods, nodes, and services',
+                  'Concrete fixes: resource limits, HPA thresholds, probe tuning',
+                  'Tracks improvements run-over-run as you apply changes',
+                  'Exportable reports for post-mortems and compliance',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[#7A8FA6]">
-                    <span className="mt-0.5 text-[#4F86FF]">✓</span>
+                  <li key={item} className="flex items-start gap-3 text-sm text-white/40">
+                    <span className="mt-0.5 shrink-0 text-indigo-400">✓</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Visual side */}
-            <div className="flex items-center justify-center border-t border-[#1E2A3D] bg-[#080C14] p-10 md:border-l md:border-t-0">
-              <div className="w-full max-w-sm space-y-3 font-mono text-xs">
-                <div className="rounded-lg border border-[#1E2A3D] bg-[#0E1420] p-4">
-                  <div className="mb-2 text-[#4F86FF] font-semibold">Experiment Summary</div>
-                  <div className="space-y-1 text-[#7A8FA6]">
-                    <div className="flex justify-between"><span>Target</span><span className="text-[#F0F4FF]">payments-api</span></div>
-                    <div className="flex justify-between"><span>Type</span><span className="text-[#F0F4FF]">CPU Stress 80%</span></div>
-                    <div className="flex justify-between"><span>Duration</span><span className="text-[#F0F4FF]">5m 00s</span></div>
-                    <div className="flex justify-between"><span>SLO Breached</span><span className="text-[#FEBC2E]">Yes (p99 &gt; 500ms)</span></div>
+            <div
+              className="flex items-center justify-center p-10"
+              style={{ borderLeft: '1px solid rgba(255,255,255,0.06)', background: 'rgba(0,0,0,0.4)' }}
+            >
+              <div className="w-full max-w-sm space-y-2 font-mono text-xs">
+                <div className="rounded-xl p-4" style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
+                  <div className="mb-3 text-xs font-semibold text-indigo-400">Experiment Summary</div>
+                  <div className="space-y-1.5">
+                    {[
+                      ['Target', 'payments-api'],
+                      ['Type', 'CPU Stress 80%'],
+                      ['Duration', '5m 00s'],
+                      ['SLO Breach', 'p99 > 500ms'],
+                    ].map(([k, v]) => (
+                      <div key={k} className="flex justify-between">
+                        <span className="text-white/30">{k}</span>
+                        <span className={k === 'SLO Breach' ? 'text-amber-400/80' : 'text-white/60'}>{v}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="rounded-lg border border-[#28C840]/30 bg-[#28C840]/5 p-4">
-                  <div className="mb-2 font-semibold text-[#28C840]">AI Recommendation</div>
-                  <p className="text-[#7A8FA6] leading-relaxed">
-                    CPU limit of <span className="text-[#F0F4FF]">500m</span> is too low for observed peak load. Recommend raising to{' '}
-                    <span className="text-[#F0F4FF]">800m</span> and lowering HPA target utilization from{' '}
-                    <span className="text-[#FEBC2E]">80%</span> →{' '}
-                    <span className="text-[#28C840]">60%</span> to trigger scaling earlier.
+
+                <div className="rounded-xl p-4" style={{ border: '1px solid rgba(52,211,153,0.15)', background: 'rgba(52,211,153,0.04)' }}>
+                  <div className="mb-2 text-xs font-semibold text-emerald-400">AI Recommendation</div>
+                  <p className="leading-relaxed text-white/40">
+                    CPU limit <span className="text-white/60">500m</span> is insufficient at peak. Raise to{' '}
+                    <span className="text-white/60">800m</span> and lower HPA target from{' '}
+                    <span className="text-amber-400/80">80%</span> →{' '}
+                    <span className="text-emerald-400/80">60%</span> to scale proactively.
                   </p>
                 </div>
-                <div className="rounded-lg border border-[#1E2A3D] bg-[#0E1420] p-4">
-                  <div className="mb-2 text-[#4F86FF] font-semibold">Affected Resources</div>
-                  <div className="space-y-1 text-[#7A8FA6]">
-                    <div>payments-api/deployment.yaml <span className="text-[#FEBC2E]">→ resources.limits.cpu</span></div>
-                    <div>payments-hpa/hpa.yaml <span className="text-[#FEBC2E]">→ targetCPUUtilizationPercentage</span></div>
+
+                <div className="rounded-xl p-4" style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
+                  <div className="mb-2 text-xs font-semibold text-indigo-400">Affected Resources</div>
+                  <div className="space-y-1 text-white/30">
+                    <div>deployment.yaml <span className="text-amber-400/60">→ limits.cpu</span></div>
+                    <div>hpa.yaml <span className="text-amber-400/60">→ targetCPUUtilizationPercentage</span></div>
                   </div>
                 </div>
               </div>
@@ -346,30 +317,29 @@ function DeepDive() {
 
 function CTABand() {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <div className="rounded-2xl border border-[#4F86FF]/20 bg-gradient-to-b from-[#4F86FF]/10 to-transparent p-14">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Find your failures before production does
-          </h2>
-          <p className="mx-auto mb-8 max-w-lg text-[#7A8FA6]">
-            Start running chaos experiments and load tests on your Kubernetes cluster today.
-            Free to get started — no credit card required.
-          </p>
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href={`${APP_URL}/signup`}
-              className="rounded-lg bg-[#4F86FF] px-8 py-3 font-medium text-white hover:bg-[#3A6EE8] transition-colors"
-            >
-              Get started free
-            </Link>
-            <a
-              href={`${APP_URL}/docs`}
-              className="rounded-lg border border-[#1E2A3D] px-8 py-3 font-medium text-[#7A8FA6] hover:border-[#2E3A4D] hover:text-[#F0F4FF] transition-colors"
-            >
-              Read the docs
-            </a>
-          </div>
+    <section className="px-6 py-32">
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
+          Find your failures<br />before production does
+        </h2>
+        <p className="mb-8 text-white/40">
+          Start running chaos experiments and load tests on your cluster today.
+          Free to get started — no credit card required.
+        </p>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Link
+            href={`${APP_URL}/signup`}
+            className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90"
+          >
+            Get started free
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+          </Link>
+          <a
+            href={`${APP_URL}/docs`}
+            className="rounded-lg border border-white/10 px-6 py-3 text-sm font-medium text-white/40 transition-colors hover:border-white/20 hover:text-white"
+          >
+            Read the docs
+          </a>
         </div>
       </div>
     </section>
@@ -378,27 +348,27 @@ function CTABand() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#1E2A3D] px-6 py-12">
+    <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} className="px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
           <div>
             <div className="mb-3 flex items-center gap-2">
               <LokiLogo />
-              <span className="font-semibold">LokiOps</span>
+              <span className="text-sm font-semibold">LokiOps</span>
             </div>
-            <p className="max-w-xs text-sm text-[#3A4A5C]">
+            <p className="max-w-xs text-xs text-white/25">
               AI-powered resilience testing for Kubernetes platform teams.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-x-16 gap-y-2 text-sm text-[#7A8FA6] sm:grid-cols-3">
-            <a href={`${APP_URL}/signup`} className="hover:text-[#F0F4FF] transition-colors">Get started</a>
-            <a href={`${APP_URL}/docs`} className="hover:text-[#F0F4FF] transition-colors">Docs</a>
-            <a href={`${APP_URL}/login`} className="hover:text-[#F0F4FF] transition-colors">Sign in</a>
-            <a href="mailto:hello@lokiops.ai" className="hover:text-[#F0F4FF] transition-colors">Contact</a>
-            <a href="https://github.com/lokiops-ai" className="hover:text-[#F0F4FF] transition-colors">GitHub</a>
+          <div className="grid grid-cols-2 gap-x-16 gap-y-2 text-xs text-white/30 sm:grid-cols-3">
+            <a href={`${APP_URL}/signup`} className="hover:text-white transition-colors">Get started</a>
+            <a href={`${APP_URL}/docs`} className="hover:text-white transition-colors">Docs</a>
+            <a href={`${APP_URL}/login`} className="hover:text-white transition-colors">Sign in</a>
+            <a href="mailto:hello@lokiops.ai" className="hover:text-white transition-colors">Contact</a>
+            <a href="https://github.com/lokiops-ai" className="hover:text-white transition-colors">GitHub</a>
           </div>
         </div>
-        <div className="mt-8 border-t border-[#1E2A3D] pt-8 text-sm text-[#3A4A5C]">
+        <div className="mt-8 text-xs text-white/15" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: '2rem' }}>
           © <span suppressHydrationWarning>{new Date().getFullYear()}</span> LokiOps. All rights reserved.
         </div>
       </div>
@@ -410,17 +380,17 @@ function Footer() {
 
 function LokiLogo() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <rect width="24" height="24" rx="6" fill="#4F86FF" />
-      <path d="M7 17L12 7L17 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9 13H15" stroke="white" strokeWidth="2" strokeLinecap="round" />
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect width="24" height="24" rx="6" fill="white" />
+      <path d="M7 17L12 7L17 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.5 13H14.5" stroke="black" strokeWidth="2" strokeLinecap="round" />
     </svg>
   )
 }
 
 function ChaosIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
     </svg>
   )
@@ -428,7 +398,7 @@ function ChaosIcon() {
 
 function AgentIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="3" />
       <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
     </svg>
@@ -437,7 +407,7 @@ function AgentIcon() {
 
 function LoadIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
     </svg>
   )
@@ -445,7 +415,7 @@ function LoadIcon() {
 
 function ScheduleIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
     </svg>
@@ -454,15 +424,17 @@ function ScheduleIcon() {
 
 function InsightIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="12" />
+      <line x1="12" y1="16" x2="12.01" y2="16" />
     </svg>
   )
 }
 
 function OperatorIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="3" width="20" height="14" rx="2" />
       <path d="M8 21h8M12 17v4" />
     </svg>
