@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lokiops-web-ingress
+  namespace: lokiops-web
+  annotations:
+    # Redirect www → non-www
+    haproxy.org/request-redirect: "https://lokiops.ai$request_uri"
+    haproxy.org/request-redirect-code: "301"
+spec:
+  ingressClassName: haproxy
+  rules:
+    - host: lokiops.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lokiops-web
+                port:
+                  number: 80
+    - host: www.lokiops.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lokiops-web
+                port:
+                  number: 80
