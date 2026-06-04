@@ -399,7 +399,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-[#1E2A3D] pt-8 text-sm text-[#3A4A5C]">
-          © {new Date().getFullYear()} LokiOps. All rights reserved.
+          © <span suppressHydrationWarning>{new Date().getFullYear()}</span> LokiOps. All rights reserved.
         </div>
       </div>
     </footer>
