@@ -54,9 +54,7 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 pt-32 pb-20">
-      {/* Grid background */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '64px 64px' }} />
+    <section className="relative overflow-hidden px-6 pt-32 pb-20">
       {/* Glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/4 top-1/3 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/10 blur-[140px]" />
